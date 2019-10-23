@@ -1,0 +1,10 @@
+/target
+**/*.rs.bk
+Cargo.lock
+
+**/*.rs.bk
+
+.gdb_history
+.vscode
+*.code-workspace
+.DS_Store
