@@ -9,6 +9,7 @@ readme = "README.md"
 keywords = ["rcu", "parallel", "read-copy-update", "linux"]
 categories = ["algorithms", "concurrency", "data-structures", "os"]
 links = "urcu"
+repository = "https://github.com/gz/urcu-sys"
 
 [package.metadata.pkg-config]
 liburcu = "0.10"
