@@ -13,6 +13,7 @@ repository = "https://github.com/gz/urcu-sys"
 
 [package.metadata.pkg-config]
 liburcu = "0.10"
+liburcu-cds = "0.10"
 
 [build-dependencies]
 bindgen = "0.51"
