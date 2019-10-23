@@ -1,5 +1,5 @@
 [package]
-name = "liburcu-sys"
+name = "urcu-sys"
 version = "0.0.1"
 authors = ["Gerd Zellweger <mail@gerdzellweger.com>"]
 edition = "2018"
