@@ -48,6 +48,7 @@ mod linux_reexports {
 #[cfg(target_os = "linux")]
 pub use linux_reexports::*;
 
+#[cfg(target_os = "macos")]
 mod macos_reexports {
     pub use super::*;
     pub use urcu_memb_flavor as rcu_flavor;
