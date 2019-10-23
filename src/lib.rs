@@ -8,36 +8,86 @@ use std::ptr;
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-pub use call_rcu_after_fork_child_memb as call_rcu_after_fork_child;
-pub use call_rcu_after_fork_parent_memb as call_rcu_after_fork_parent;
-pub use call_rcu_before_fork_memb as call_rcu_before_fork;
-pub use call_rcu_data_free_memb as call_rcu_data_free;
-pub use call_rcu_memb as call_rcu;
-pub use create_all_cpu_call_rcu_data_memb as create_all_cpu_call_rcu_data;
-pub use create_call_rcu_data_memb as create_call_rcu_data;
-pub use defer_rcu_memb as defer_rcu;
-pub use free_all_cpu_call_rcu_data_memb as free_all_cpu_call_rcu_data;
-pub use get_call_rcu_data_memb as get_call_rcu_data;
-pub use get_call_rcu_thread_memb as get_call_rcu_thread;
-pub use get_cpu_call_rcu_data_memb as get_cpu_call_rcu_data;
-pub use get_default_call_rcu_data_memb as get_default_call_rcu_data;
-pub use get_thread_call_rcu_data_memb as get_thread_call_rcu_data;
-pub use rcu_barrier_memb as rcu_barrier;
-pub use rcu_defer_barrier_memb as rcu_defer_barrier;
-pub use rcu_defer_barrier_thread_memb as rcu_defer_barrier_thread;
-pub use rcu_defer_register_thread_memb as rcu_defer_register_thread;
-pub use rcu_defer_unregister_thread_memb as rcu_defer_unregister_thread;
-pub use rcu_init_memb as rcu_init;
-pub use rcu_read_lock_memb as rcu_read_lock;
-pub use rcu_read_ongoing_memb as rcu_read_ongoing;
-pub use rcu_read_unlock_memb as rcu_read_unlock;
-pub use rcu_register_thread_memb as rcu_register_thread;
-pub use rcu_unregister_thread_memb as rcu_unregister_thread;
-pub use set_cpu_call_rcu_data_memb as set_cpu_call_rcu_data;
-pub use set_thread_call_rcu_data_memb as set_thread_call_rcu_data;
-pub use synchronize_rcu_memb as synchronize_rcu;
-pub use urcu_register_rculfhash_atfork_memb as urcu_register_rculfhash_atfork;
-pub use urcu_unregister_rculfhash_atfork_memb as urcu_unregister_rculfhash_atfork;
+#[cfg(target_os = "linux")]
+mod linux_reexports {
+    pub use super::*;
+    pub use rcu_flavor_memb as rcu_flavor;
+
+    pub use call_rcu_after_fork_child_memb as call_rcu_after_fork_child;
+    pub use call_rcu_after_fork_parent_memb as call_rcu_after_fork_parent;
+    pub use call_rcu_before_fork_memb as call_rcu_before_fork;
+    pub use call_rcu_data_free_memb as call_rcu_data_free;
+    pub use call_rcu_memb as call_rcu;
+    pub use create_all_cpu_call_rcu_data_memb as create_all_cpu_call_rcu_data;
+    pub use create_call_rcu_data_memb as create_call_rcu_data;
+    pub use defer_rcu_memb as defer_rcu;
+    pub use free_all_cpu_call_rcu_data_memb as free_all_cpu_call_rcu_data;
+    pub use get_call_rcu_data_memb as get_call_rcu_data;
+    pub use get_call_rcu_thread_memb as get_call_rcu_thread;
+    pub use get_cpu_call_rcu_data_memb as get_cpu_call_rcu_data;
+    pub use get_default_call_rcu_data_memb as get_default_call_rcu_data;
+    pub use get_thread_call_rcu_data_memb as get_thread_call_rcu_data;
+    pub use rcu_barrier_memb as rcu_barrier;
+    pub use rcu_defer_barrier_memb as rcu_defer_barrier;
+    pub use rcu_defer_barrier_thread_memb as rcu_defer_barrier_thread;
+    pub use rcu_defer_register_thread_memb as rcu_defer_register_thread;
+    pub use rcu_defer_unregister_thread_memb as rcu_defer_unregister_thread;
+    pub use rcu_init_memb as rcu_init;
+    pub use rcu_read_lock_memb as rcu_read_lock;
+    pub use rcu_read_ongoing_memb as rcu_read_ongoing;
+    pub use rcu_read_unlock_memb as rcu_read_unlock;
+    pub use rcu_register_thread_memb as rcu_register_thread;
+    pub use rcu_unregister_thread_memb as rcu_unregister_thread;
+    pub use set_cpu_call_rcu_data_memb as set_cpu_call_rcu_data;
+    pub use set_thread_call_rcu_data_memb as set_thread_call_rcu_data;
+    pub use synchronize_rcu_memb as synchronize_rcu;
+    pub use urcu_register_rculfhash_atfork_memb as urcu_register_rculfhash_atfork;
+    pub use urcu_unregister_rculfhash_atfork_memb as urcu_unregister_rculfhash_atfork;
+}
+
+#[cfg(target_os = "linux")]
+pub use linux_reexports::*;
+
+mod macos_reexports {
+    pub use super::*;
+    pub use urcu_memb_flavor as rcu_flavor;
+
+    pub use urcu_memb_call_rcu as call_rcu;
+    pub use urcu_memb_call_rcu_after_fork_child as call_rcu_after_fork_child;
+    pub use urcu_memb_call_rcu_after_fork_parent as call_rcu_after_fork_parent;
+    pub use urcu_memb_call_rcu_before_fork as call_rcu_before_fork;
+    pub use urcu_memb_call_rcu_data_free as call_rcu_data_free;
+    pub use urcu_memb_create_all_cpu_call_rcu_data as create_all_cpu_call_rcu_data;
+    pub use urcu_memb_create_call_rcu_data as create_call_rcu_data;
+    pub use urcu_memb_defer_rcu as defer_rcu;
+    pub use urcu_memb_free_all_cpu_call_rcu_data as free_all_cpu_call_rcu_data;
+    pub use urcu_memb_get_call_rcu_data as get_call_rcu_data;
+    pub use urcu_memb_get_call_rcu_thread as get_call_rcu_thread;
+    pub use urcu_memb_get_cpu_call_rcu_data as get_cpu_call_rcu_data;
+    pub use urcu_memb_get_default_call_rcu_data as get_default_call_rcu_data;
+    pub use urcu_memb_get_thread_call_rcu_data as get_thread_call_rcu_data;
+
+    pub use urcu_memb_barrier as rcu_barrier;
+    pub use urcu_memb_defer_barrier as rcu_defer_barrier;
+    pub use urcu_memb_defer_barrier_thread as rcu_defer_barrier_thread;
+    pub use urcu_memb_defer_register_thread as rcu_defer_register_thread;
+    pub use urcu_memb_defer_unregister_thread as rcu_defer_unregister_thread;
+    pub use urcu_memb_init as rcu_init;
+    pub use urcu_memb_read_lock as rcu_read_lock;
+    pub use urcu_memb_read_ongoing as rcu_read_ongoing;
+    pub use urcu_memb_read_unlock as rcu_read_unlock;
+    pub use urcu_memb_register_thread as rcu_register_thread;
+    pub use urcu_memb_set_cpu_call_rcu_data as set_cpu_call_rcu_data;
+    pub use urcu_memb_set_thread_call_rcu_data as set_thread_call_rcu_data;
+    pub use urcu_memb_synchronize_rcu as synchronize_rcu;
+    pub use urcu_memb_unregister_thread as rcu_unregister_thread;
+
+    pub use urcu_memb_register_rculfhash_atfork as urcu_register_rculfhash_atfork;
+    pub use urcu_memb_unregister_rculfhash_atfork as urcu_unregister_rculfhash_atfork;
+}
+
+#[cfg(target_os = "macos")]
+pub use macos_reexports::*;
 
 pub unsafe fn cds_lfht_new(
     init_size: c_ulong,
@@ -52,7 +102,7 @@ pub unsafe fn cds_lfht_new(
         max_nr_buckets,
         flags,
         ptr::null_mut(),
-        &rcu_flavor_memb,
+        &rcu_flavor,
         attr,
     )
 }
