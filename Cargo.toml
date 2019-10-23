@@ -1,6 +1,6 @@
 [package]
 name = "urcu-sys"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Gerd Zellweger <mail@gerdzellweger.com>"]
 edition = "2018"
 license = "LGPL-2.1"
