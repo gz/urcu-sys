@@ -6,5 +6,5 @@ Rust bindings for [liburcu](http://liburcu.org/).
 
 On Ubuntu do:
 ```
-apt install liburci-dev liburcu6
+apt install liburcu-dev liburcu6
 ```
