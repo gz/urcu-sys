@@ -1,6 +1,6 @@
 [package]
 name = "urcu-sys"
-version = "0.0.4"
+version = "0.0.5"
 authors = ["Gerd Zellweger <mail@gerdzellweger.com>"]
 edition = "2018"
 license = "LGPL-2.1"
@@ -12,8 +12,8 @@ links = "urcu"
 repository = "https://github.com/gz/urcu-sys"
 
 [package.metadata.pkg-config]
-liburcu = "0.10"
-liburcu-cds = "0.10"
+liburcu = "0.11"
+liburcu-cds = "0.11"
 
 [build-dependencies]
 bindgen = "0.51"
