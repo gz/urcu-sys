@@ -7,9 +7,10 @@ use std::os::raw::{c_int, c_ulong};
 use std::ptr;
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
-
+#[cfg(feature = "memb")]
 mod reexports {
     pub use super::*;
+
     pub use urcu_memb_flavor as rcu_flavor;
 
     pub use urcu_memb_call_rcu as call_rcu;
@@ -45,6 +46,46 @@ mod reexports {
     pub use urcu_memb_register_rculfhash_atfork as urcu_register_rculfhash_atfork;
     pub use urcu_memb_unregister_rculfhash_atfork as urcu_unregister_rculfhash_atfork;
 }
+
+#[cfg(feature = "qsbr")]
+mod reexports {
+    pub use super::*;
+
+    pub use urcu_qsbr_flavor as rcu_flavor;
+
+    pub use urcu_qsbr_call_rcu as call_rcu;
+    pub use urcu_qsbr_call_rcu_after_fork_child as call_rcu_after_fork_child;
+    pub use urcu_qsbr_call_rcu_after_fork_parent as call_rcu_after_fork_parent;
+    pub use urcu_qsbr_call_rcu_before_fork as call_rcu_before_fork;
+    pub use urcu_qsbr_call_rcu_data_free as call_rcu_data_free;
+    pub use urcu_qsbr_create_all_cpu_call_rcu_data as create_all_cpu_call_rcu_data;
+    pub use urcu_qsbr_create_call_rcu_data as create_call_rcu_data;
+    pub use urcu_qsbr_defer_rcu as defer_rcu;
+    pub use urcu_qsbr_free_all_cpu_call_rcu_data as free_all_cpu_call_rcu_data;
+    pub use urcu_qsbr_get_call_rcu_data as get_call_rcu_data;
+    pub use urcu_qsbr_get_call_rcu_thread as get_call_rcu_thread;
+    pub use urcu_qsbr_get_cpu_call_rcu_data as get_cpu_call_rcu_data;
+    pub use urcu_qsbr_get_default_call_rcu_data as get_default_call_rcu_data;
+    pub use urcu_qsbr_get_thread_call_rcu_data as get_thread_call_rcu_data;
+
+    pub use urcu_qsbr_barrier as rcu_barrier;
+    pub use urcu_qsbr_defer_barrier as rcu_defer_barrier;
+    pub use urcu_qsbr_defer_barrier_thread as rcu_defer_barrier_thread;
+    pub use urcu_qsbr_defer_register_thread as rcu_defer_register_thread;
+    pub use urcu_qsbr_defer_unregister_thread as rcu_defer_unregister_thread;
+    pub use urcu_qsbr_read_ongoing as rcu_read_ongoing;
+    pub use urcu_qsbr_register_thread as rcu_register_thread;
+    pub use urcu_qsbr_set_cpu_call_rcu_data as set_cpu_call_rcu_data;
+    pub use urcu_qsbr_set_thread_call_rcu_data as set_thread_call_rcu_data;
+    pub use urcu_qsbr_synchronize_rcu as synchronize_rcu;
+    pub use urcu_qsbr_unregister_thread as rcu_unregister_thread;
+
+    pub use urcu_qsbr_register_rculfhash_atfork as urcu_register_rculfhash_atfork;
+    pub use urcu_qsbr_unregister_rculfhash_atfork as urcu_unregister_rculfhash_atfork;
+
+    pub use urcu_qsbr_quiescent_state as rcu_quiescent_state;
+}
+
 
 pub use reexports::*;
 
